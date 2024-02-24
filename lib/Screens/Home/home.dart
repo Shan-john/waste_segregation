@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const Gap(20),
       const   SplineChartgraph(label: "Wet waste",
-         percentagerate: 20),
+         percentagerate: 20), 
           const Gap(20),
        const    SplineChartgraph(
             label: "Metal waste",
