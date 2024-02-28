@@ -84,7 +84,7 @@ class LoginPage extends StatelessWidget {
             Primarybutton(
               onpressed: () async {
                 // checking the password and email are not null if it true return true
-                 Routes.instance.pushreplace(
+                 Routes.instance.pushandRemoveUntil(
                       widget: HomeScreen(username: usernamecontroller.text),
                       context: context);
               },

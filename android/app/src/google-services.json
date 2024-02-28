@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "238150002720",
+    "firebase_url": "https://level-8d7fa-default-rtdb.firebaseio.com",
+    "project_id": "level-8d7fa",
+    "storage_bucket": "level-8d7fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238150002720:android:d26eda5beac27a9d29f445",
+        "android_client_info": {
+          "package_name": "com.example.waste_segregation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAd5rTzKzdpAxHMIwGa00D8wXPJNvszRt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

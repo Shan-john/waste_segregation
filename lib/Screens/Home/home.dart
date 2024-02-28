@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: showText(label: widget.username, size: 25, color: Colors.white),
         leading: InkWell(
             onTap: () {
-              Routes.instance.pop(context);
+              // Routes.instance.pop(context);
               Constants.instance.username = "";
             },
             child: const Icon(
