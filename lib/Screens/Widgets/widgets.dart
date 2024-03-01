@@ -18,12 +18,11 @@ Widget textfieldeditor(
     TextInputType? keyboardType}) {
   return Container(
     decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.all(Radius.circular(25))
-    ),
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(25))),
     margin: const EdgeInsets.symmetric(horizontal: 15),
-    padding:const EdgeInsets.symmetric(horizontal: 15),  
-    child: TextFormField( 
+    padding: const EdgeInsets.symmetric(horizontal: 15),
+    child: TextFormField(
       keyboardType: keyboardType,
       style: const TextStyle(color: Color.fromARGB(255, 10, 10, 10)),
       controller: controller,
@@ -63,7 +62,7 @@ class _PrimarybuttonState extends State<Primarybutton> {
           width: widget.size,
           height: widget.height,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25), 
+            borderRadius: BorderRadius.circular(25),
             color: widget.colors,
           ),
           child: MaterialButton(
@@ -110,6 +109,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       margin: const EdgeInsets.symmetric(horizontal: 15),
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: TextFormField(
+      
         style: const TextStyle(color: Color.fromARGB(255, 10, 10, 10)),
         obscureText: widget.obscuretext,
         controller: widget.passwordcontroller,
@@ -132,12 +132,14 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
     );
   }
 }
+
 class SplineChartgraph extends StatelessWidget {
   final double percentagerate;
-final  String label;
+  final String label;
 
-  const SplineChartgraph({super.key, required this.percentagerate, required this.label});
-  
+  const SplineChartgraph(
+      {super.key, required this.percentagerate, required this.label});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -145,24 +147,25 @@ final  String label;
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(label, style: const TextStyle(
-                    color:  Color.fromARGB(255, 255, 255, 255),
-                    fontSize:18  ,
-                  ),), 
-
+          Text(
+            label,
+            style: const TextStyle(
+              color: Color.fromARGB(255, 255, 255, 255),
+              fontSize: 18,
+            ),
+          ),
           LinearPercentIndicator(
-            width: 260.0, 
+            width: 260.0,
             lineHeight: 40.0,
-            percent: percentagerate /100,
-            
+            percent: percentagerate / 100,
             barRadius: const Radius.circular(30),
-            center:  Text("$percentagerate %",style: TextStyle(color: Colors.white),),
+            center: Text(
+              "$percentagerate %",
+              style: TextStyle(color: Colors.white),
+            ),
             animation: true,
-         
             backgroundColor: Color.fromARGB(255, 46, 46, 46),
             progressColor: Color.fromARGB(255, 8, 110, 194),
-            
-           
           ),
         ],
       ),

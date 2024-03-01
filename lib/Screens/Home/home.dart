@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:waste_segregation/Screens/Widgets/widgets.dart';
+import 'package:waste_segregation/Screens/auth_ui/Login.dart';
 import 'package:waste_segregation/core/constants.dart';
 import 'package:waste_segregation/core/function.dart';
 
 import 'package:waste_segregation/core/routes.dart';
+import 'package:waste_segregation/service/firebase_auth_helper.dart';
 
 class HomeScreen extends StatefulWidget {
-  final String username;
-  const HomeScreen({super.key, required this.username});
+  const HomeScreen({
+    super.key,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -25,10 +28,15 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Color.fromARGB(255, 0, 0, 0),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 41, 0, 94),
-        title: showText(label: widget.username, size: 25, color: Colors.white),
+        // title: showText(label: widget.username, size: 25, color: Colors.white),
         leading: InkWell(
-            onTap: () {
-              // Routes.instance.pop(context);
+            onTap: ()async {
+              bool loginout = false;
+              loginout =await FireBaseAuthHelper.instance.logOut();
+              if (loginout) {
+                  Routes.instance.pushandRemoveUntil(context: context,widget: LoginPage());
+              }
+             
               Constants.instance.username = "";
             },
             child: const Icon(
@@ -38,41 +46,41 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           InkWell(
             onTap: () {
-              ShowMessage("menuButton Clicked");
+              showMessage("menuButton Clicked");
             },
             child: const Icon(
               Icons.menu,
               color: Colors.white,
             ),
           ),
-         const Gap(20)
+          const Gap(20)
         ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
-        
         children: [
           Center(
               child: showText(
-                  label: "Waste Segregation", size: 35, color: const Color.fromARGB(255, 255, 255, 255))),
-        const  SplineChartgraph(
-            label: "Dry waste" ,
+                  label: "Waste Segregation",
+                  size: 35,
+                  color: const Color.fromARGB(255, 255, 255, 255))),
+          const SplineChartgraph(
+            label: "Dry waste",
             percentagerate: 70,
           ),
           const Gap(20),
-      const   SplineChartgraph(label: "Wet waste",
-         percentagerate: 20), 
+          const SplineChartgraph(label: "Wet waste", percentagerate: 20),
           const Gap(20),
-       const    SplineChartgraph(
+          const SplineChartgraph(
             label: "Metal waste",
-            percentagerate: 89   ,
-           ),
+            percentagerate: 89,
+          ),
           const Gap(20),
           Primarybutton(
             height: 45,
             fontsize: 20,
-            colors:  Color.fromARGB(183, 126, 9, 236),
+            colors: Color.fromARGB(183, 126, 9, 236),
             onpressed: () {
               Constants.instance.username = "";
               Routes.instance.pop(context);

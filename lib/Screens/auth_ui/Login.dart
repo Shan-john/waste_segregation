@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:waste_segregation/Screens/Home/home.dart';
 import 'package:waste_segregation/Screens/Widgets/widgets.dart';
-import 'package:waste_segregation/Screens/auth_ui/SignIn.dart';
- 
+import 'package:waste_segregation/Screens/auth_ui/SignUp.dart';
+import 'package:waste_segregation/core/function.dart';
+
 import 'package:waste_segregation/core/routes.dart';
 
 import 'package:flutter/services.dart';
- 
+import 'package:waste_segregation/service/firebase_auth_helper.dart';
+
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
-  TextEditingController usernamecontroller = TextEditingController();
+  TextEditingController emailcontroller = TextEditingController();
 
   TextEditingController passwordcontroller = TextEditingController();
   @override
@@ -47,8 +49,8 @@ class LoginPage extends StatelessWidget {
             ),
             Gap(10),
             textfieldeditor(
-              controller: usernamecontroller,
-              keyboardType: TextInputType.text,
+              controller: emailcontroller,
+              keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                 labelText: "Email",
                 labelStyle: TextStyle(
@@ -70,7 +72,7 @@ class LoginPage extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     Routes.instance
-                        .push(widget: SignInpage(), context: context);
+                        .push(widget: SignUppage(), context: context);
                   },
                   child: showText(
                       //if Screen type == login  the Display "Don't have an account !"
@@ -84,16 +86,26 @@ class LoginPage extends StatelessWidget {
             Primarybutton(
               onpressed: () async {
                 // checking the password and email are not null if it true return true
-                 Routes.instance.pushandRemoveUntil(
-                      widget: HomeScreen(username: usernamecontroller.text),
-                      context: context);
+                bool validation = false;
+                bool login = false;
+                validation = loginAuthvalidation(
+                  emailcontroller.text,
+                  passwordcontroller.text,
+                );
+                if (validation) {
+                  login = await FireBaseAuthHelper.instance.login(
+                      emailcontroller.text, passwordcontroller.text, context);
+                }
+                if (login == true) {
+                  Routes.instance
+                      .pushandRemoveUntil(widget: HomeScreen(), context: context);
+                }
               },
               height: 63,
               size: MediaQuery.of(context).size.width - 25,
               colors: Color.fromARGB(183, 126, 9, 236),
               label: "Sign In",
               fontsize: 15,
-               
             ),
           ]),
     );
