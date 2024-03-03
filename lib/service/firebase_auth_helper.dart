@@ -16,7 +16,7 @@ class FireBaseAuthHelper {
       String email, String password, BuildContext context) async {
     try {
       showMessage("logining..");
-     
+   
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       showMessage("Login successfully completed ..");
       Routes.instance.pop(context);
@@ -30,9 +30,8 @@ class FireBaseAuthHelper {
   Future<bool> signup(
       String name, String email, String password, BuildContext context) async {
     try {
-       
-      UserCredential? userCredential =await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential? userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
       showMessage("Signuped successfully completed ..");
       Usermodel usermodel =
           Usermodel(email: email, id: userCredential.user!.uid, name: name);
@@ -45,11 +44,10 @@ class FireBaseAuthHelper {
     }
   }
 
-  Future<bool> logOut()async {
+  Future<bool> logOut() async {
     try {
-      
       showMessage("LoginIng out");
-     await _auth.signOut();
+      await _auth.signOut();
       return true;
     } catch (e) {
       showMessage("failed");
@@ -57,7 +55,6 @@ class FireBaseAuthHelper {
     }
   }
 }
-
 
 showloaderDailog(BuildContext context) {
   var hsize = MediaQuery.of(context).size.height;

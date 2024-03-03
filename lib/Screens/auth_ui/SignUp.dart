@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:waste_segregation/Screens/Home/home.dart';
 import 'package:waste_segregation/Screens/Widgets/widgets.dart';
-import 'package:waste_segregation/Screens/auth_ui/Login.dart';
+ 
 import 'package:waste_segregation/core/function.dart';
-import 'package:waste_segregation/core/assetsImage.dart';
+ 
 import 'package:waste_segregation/core/routes.dart';
 
 import 'package:flutter/services.dart';
@@ -22,7 +22,7 @@ class SignUppage extends StatelessWidget {
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.center,
@@ -36,14 +36,14 @@ class SignUppage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Column(
+                const Column(
                   children: [
                    
                    
                     Gap(40),
                     Text(
                       "Sign Up",
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                         fontSize: 35,
@@ -51,7 +51,7 @@ class SignUppage extends StatelessWidget {
                     ),
                     Text(
                       "Use the account below to sign in",
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                         fontSize: 18,
@@ -59,7 +59,7 @@ class SignUppage extends StatelessWidget {
                     ),
                   ],
                 ),
-                Gap(60),
+                const Gap(60),
                 textfieldeditor(
                   controller: usernamecontroller,
                   keyboardType: TextInputType.text,
@@ -69,7 +69,7 @@ class SignUppage extends StatelessWidget {
                         color: Color.fromARGB(132, 58, 58, 58), fontSize: 20),
                   ),
                 ),
-                Gap(20),
+                const Gap(20),
                 textfieldeditor(
                   controller: emailcontroller,
                   keyboardType: TextInputType.text,
@@ -79,9 +79,9 @@ class SignUppage extends StatelessWidget {
                         color: Color.fromARGB(132, 58, 58, 58), fontSize: 20),
                   ),
                 ),
-                Gap(20),
+                const Gap(20),
                 PasswordTextField(passwordcontroller: passwordcontroller),
-                Gap(20),
+                const Gap(20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   
@@ -91,7 +91,7 @@ class SignUppage extends StatelessWidget {
                         label: "Don't have an account !",
                         size: 16,
                         color: const Color.fromARGB(255, 247, 247, 247)),
-                    Gap(10),
+                    const Gap(10),
                     InkWell(
                       onTap: () {
                         Routes.instance.pop(context);
@@ -100,28 +100,28 @@ class SignUppage extends StatelessWidget {
                           //if Screen type == login  the Display "Don't have an account !"
                           label: "SignUp here",
                           size: 16,
-                          color: Color.fromARGB(255, 1, 88, 202)),
+                          color: const Color.fromARGB(255, 1, 88, 202)),
                     ),
                   ],
                 ),
-                Gap(20),
+                const Gap(20),
                 Primarybutton(
                   onpressed: () async {
                     // checking the password and email are not null if it true return true
                     bool validation = false;
-                    validation = SignUpAuthvalidation(
+                    validation = signUpAuthvalidation(
                         emailcontroller.text, passwordcontroller.text,usernamecontroller.text);
                     if (validation) {
                       FireBaseAuthHelper.instance.signup(usernamecontroller.text,
                           emailcontroller.text, passwordcontroller.text, context);Routes.instance.pushandRemoveUntil(
-                        widget: HomeScreen(),
+                        widget: const HomeScreen(),
                         context: context);
                     }
                     
                   },
                   height: 63,
                   size: MediaQuery.of(context).size.width - 25,
-                  colors: Color.fromARGB(183, 126, 9, 236),
+                  colors: const Color.fromARGB(183, 126, 9, 236),
                   label: "Sign In",
                   fontsize: 15,
                 ),

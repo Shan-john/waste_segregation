@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'package:waste_segregation/Screens/Widgets/widgets.dart';
-import 'package:waste_segregation/Screens/auth_ui/Login.dart';
-
+import 'package:waste_segregation/Screens/auth_ui/login.dart';
 
 import 'package:waste_segregation/core/routes.dart';
 
@@ -34,17 +33,28 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     getuserdata();
-    Drywastelevel();
+    drywastelevel();
     wetwastelevel();
     metalwastelevel();
     super.initState();
   }
 
+  // @override
+  // void dispose() {
+
+  //   Drywastelevel();
+  //   wetwastelevel();
+  //   metalwastelevel();
+
+  //   super.dispose();
+  // }
+
   void getuserdata() async {
     userdata = await FirebasefirestoreHelper.instance.getUsernameinformation();
+    setState(() {});
   }
 
-  Drywastelevel() {
+  drywastelevel() {
     DatabaseReference refdata =
         FirebaseDatabase.instance.ref().child('drywasteLevel');
     refdata.onValue.listen(
@@ -53,7 +63,6 @@ class _HomeScreenState extends State<HomeScreen> {
           stDrywastelevel = event.snapshot.value.toString();
           drywasteLevelvalue = double.parse(stDrywastelevel);
         });
-        print(drywasteLevelvalue);
       },
     );
   }
@@ -67,7 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
           stWetwastelevel = event.snapshot.value.toString();
           wetwasteLevelvalue = double.parse(stWetwastelevel);
         });
-        print(wetwasteLevelvalue);
       },
     );
   }
@@ -81,7 +89,6 @@ class _HomeScreenState extends State<HomeScreen> {
           stMetalwastelevel = event.snapshot.value.toString();
           metalwasteLevelvalue = double.parse(stMetalwastelevel);
         });
-        print(metalwasteLevelvalue);
       },
     );
   }
@@ -90,10 +97,11 @@ class _HomeScreenState extends State<HomeScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 41, 0, 94),
-          title: showText(label: userdata.name!, size: 25, color: Colors.white),
+          backgroundColor: const Color.fromARGB(255, 41, 0, 94),
+          title: showText(
+              label: userdata.name ?? "", size: 25, color: Colors.white),
         ),
         body: FutureBuilder(
             future: _fapp,
@@ -109,25 +117,39 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: const Color.fromARGB(255, 255, 255, 255))),
                   SplineChartgraph(
                     label: "Dry waste",
-                    percentagerate: drywasteLevelvalue,
+                    percentagerate: drywasteLevelvalue > 100
+                        ? 0
+                        : drywasteLevelvalue < 0
+                            ? 0
+                            : drywasteLevelvalue,
                   ),
                   const Gap(20),
                   SplineChartgraph(
-                      label: "Wet waste", percentagerate: wetwasteLevelvalue),
+                    label: "Wet waste",
+                    percentagerate: wetwasteLevelvalue > 100
+                        ? 0
+                        : wetwasteLevelvalue < 0
+                            ? 0
+                            : wetwasteLevelvalue,
+                  ),
                   const Gap(20),
                   SplineChartgraph(
                     label: "Metal waste",
-                    percentagerate: metalwasteLevelvalue,
+                    percentagerate: metalwasteLevelvalue > 100
+                        ? 0
+                        : metalwasteLevelvalue < 0
+                            ? 0
+                            : metalwasteLevelvalue,
                   ),
                   const Gap(20),
                   Primarybutton(
                     height: 45,
                     fontsize: 20,
-                    colors: Color.fromARGB(183, 126, 9, 236),
+                    colors: const Color.fromARGB(183, 126, 9, 236),
                     onpressed: () {
+                      FireBaseAuthHelper.instance.logOut();
                       Routes.instance.pushandRemoveUntil(
                           context: context, widget: LoginPage());
-                      FireBaseAuthHelper.instance.logOut();
                     },
                     label: "SignOut",
                     size: size.width - 20,

@@ -18,7 +18,7 @@ Widget textfieldeditor(
     required InputDecoration decoration,
     TextInputType? keyboardType}) {
   return Container(
-    decoration: BoxDecoration(
+    decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(25))),
     margin: const EdgeInsets.symmetric(horizontal: 15),
@@ -104,7 +104,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(25))),
       margin: const EdgeInsets.symmetric(horizontal: 15),
@@ -144,7 +144,7 @@ class SplineChartgraph extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -162,11 +162,11 @@ class SplineChartgraph extends StatelessWidget {
             barRadius: const Radius.circular(30),
             center: Text(
               "$percentagerate %",
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
             animation: true,
-            backgroundColor: Color.fromARGB(255, 46, 46, 46),
-            progressColor: Color.fromARGB(255, 8, 110, 194),
+            backgroundColor: const Color.fromARGB(255, 46, 46, 46),
+            progressColor: const Color.fromARGB(255, 8, 110, 194),
           ),
         ],
       ),

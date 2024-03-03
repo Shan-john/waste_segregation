@@ -7,9 +7,10 @@ import 'package:waste_segregation/core/function.dart';
 
 import 'package:waste_segregation/core/routes.dart';
 
-import 'package:flutter/services.dart';
 import 'package:waste_segregation/service/firebase_auth_helper.dart';
 
+ 
+// ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
@@ -25,7 +26,7 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
           const  Padding(
-              padding: const EdgeInsets.only(left: 20.0),
+              padding: EdgeInsets.only(left: 20.0),
               child: Column(
                 children: [
                   Text(
@@ -47,7 +48,7 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
             ),
-            Gap(10),
+            const Gap(10),
             textfieldeditor(
               controller: emailcontroller,
               keyboardType: TextInputType.emailAddress,
@@ -57,9 +58,9 @@ class LoginPage extends StatelessWidget {
                     color: Color.fromARGB(132, 58, 58, 58), fontSize: 20),
               ),
             ),
-            Gap(20),
+            const Gap(20),
             PasswordTextField(passwordcontroller: passwordcontroller),
-            Gap(20),
+            const Gap(20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -68,7 +69,7 @@ class LoginPage extends StatelessWidget {
                     label: "Don't have an account !",
                     size: 16,
                     color: const Color.fromARGB(255, 247, 247, 247)),
-                Gap(10),
+                const Gap(10),
                 InkWell(
                   onTap: () {
                     Routes.instance
@@ -78,11 +79,11 @@ class LoginPage extends StatelessWidget {
                       //if Screen type == login  the Display "Don't have an account !"
                       label: "SignUp here",
                       size: 16,
-                      color: Color.fromARGB(255, 1, 88, 202)),
+                      color: const Color.fromARGB(255, 1, 88, 202)),
                 ),
               ],
             ),
-            Gap(15),
+            const Gap(15),
             Primarybutton(
               onpressed: () async {
                 // checking the password and email are not null if it true return true
@@ -98,12 +99,13 @@ class LoginPage extends StatelessWidget {
                 }
                 if (login == true) {
                   Routes.instance
-                      .pushandRemoveUntil(widget: HomeScreen(), context: context);
+                      // ignore: use_build_context_synchronously
+                      .pushandRemoveUntil(widget: const HomeScreen(), context: context);
                 }
               },
               height: 63,
               size: MediaQuery.of(context).size.width - 25,
-              colors: Color.fromARGB(183, 126, 9, 236),
+              colors: const Color.fromARGB(183, 126, 9, 236),
               label: "Sign In",
               fontsize: 15,
             ),
