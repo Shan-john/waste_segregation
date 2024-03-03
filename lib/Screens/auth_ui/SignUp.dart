@@ -4,7 +4,7 @@ import 'package:waste_segregation/Screens/Home/home.dart';
 import 'package:waste_segregation/Screens/Widgets/widgets.dart';
 import 'package:waste_segregation/Screens/auth_ui/Login.dart';
 import 'package:waste_segregation/core/function.dart';
-
+import 'package:waste_segregation/core/assetsImage.dart';
 import 'package:waste_segregation/core/routes.dart';
 
 import 'package:flutter/services.dart';
@@ -38,16 +38,11 @@ class SignUppage extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    Gap(30),
-                    Container(
-                      height: 50,
-                      width: 50,
-                      color: Colors.amber,
-                      child: Text("add image"),
-                    ),
-                    Gap(10),
+                   
+                   
+                    Gap(40),
                     Text(
-                      "Sign In",
+                      "Sign Up",
                       style: const TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
@@ -89,11 +84,12 @@ class SignUppage extends StatelessWidget {
                 Gap(20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  
+                  children: [ 
                     showText(
                         //if Screen type == login  the Display "Don't have an account !"
                         label: "Don't have an account !",
-                        size: 15,
+                        size: 16,
                         color: const Color.fromARGB(255, 247, 247, 247)),
                     Gap(10),
                     InkWell(
@@ -103,12 +99,12 @@ class SignUppage extends StatelessWidget {
                       child: showText(
                           //if Screen type == login  the Display "Don't have an account !"
                           label: "SignUp here",
-                          size: 15,
+                          size: 16,
                           color: Color.fromARGB(255, 1, 88, 202)),
                     ),
                   ],
                 ),
-                Gap(15),
+                Gap(20),
                 Primarybutton(
                   onpressed: () async {
                     // checking the password and email are not null if it true return true
@@ -129,17 +125,8 @@ class SignUppage extends StatelessWidget {
                   label: "Sign In",
                   fontsize: 15,
                 ),
-                Gap(20),
-                Primarybutton(
-                  onpressed: () async {
-                    // checking the password and email are not null if it true return true
-                  },
-                  height: 63,
-                  size: 100,
-                  colors: Color.fromARGB(183, 126, 9, 236),
-                  label: "Back",
-                  fontsize: 15,
-                ),
+               
+               
               ]),
         ),
       ),

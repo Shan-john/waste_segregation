@@ -24,13 +24,13 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
+          const  Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: Column(
                 children: [
                   Text(
                     "Welcome Back",
-                    style: const TextStyle(
+                    style:  TextStyle(
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
                       fontSize: 35,
@@ -38,7 +38,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   Text(
                     "kindly enter the login details",
-                    style: const TextStyle(
+                    style:  TextStyle(
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
                       fontSize: 18,
@@ -66,7 +66,7 @@ class LoginPage extends StatelessWidget {
                 showText(
                     //if Screen type == login  the Display "Don't have an account !"
                     label: "Don't have an account !",
-                    size: 15,
+                    size: 16,
                     color: const Color.fromARGB(255, 247, 247, 247)),
                 Gap(10),
                 InkWell(
@@ -77,7 +77,7 @@ class LoginPage extends StatelessWidget {
                   child: showText(
                       //if Screen type == login  the Display "Don't have an account !"
                       label: "SignUp here",
-                      size: 15,
+                      size: 16,
                       color: Color.fromARGB(255, 1, 88, 202)),
                 ),
               ],
