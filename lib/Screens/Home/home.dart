@@ -39,18 +39,19 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  // @override
-  // void dispose() {
+  @override
+  void dispose() {
+    getuserdata();
+    drywastelevel();
+    wetwastelevel();
+    metalwastelevel();
 
-  //   Drywastelevel();
-  //   wetwastelevel();
-  //   metalwastelevel();
-
-  //   super.dispose();
-  // }
+    super.dispose();
+  }
 
   void getuserdata() async {
     userdata = await FirebasefirestoreHelper.instance.getUsernameinformation();
+
     setState(() {});
   }
 
